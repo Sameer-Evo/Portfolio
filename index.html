@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sameer Mohammad — Developer</title>
+<style>
+/* Premium 3D direction: calm depth, restrained motion, no visual strobing */
+.webgl{display:none!important}
+.three-layer{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.68}
+.three-layer canvas{display:block;width:100%;height:100%}
+.hero{background:radial-gradient(circle at 72% 28%,#101a31 0,transparent 32%),linear-gradient(180deg,#05070c 0,#030305 72%)}
+.hero-grid{opacity:.09}
+.orb{display:none}
+.hero-photo{z-index:2!important;right:4vw!important;top:15vh!important;width:min(33vw,455px)!important;height:min(67vh,665px)!important;border-radius:30px!important;opacity:.88;transform:perspective(1500px) rotateY(-7deg) rotateX(1deg)!important;box-shadow:0 42px 100px #000d,0 0 70px #6d7cff12!important}
+.hero-photo:before{background:linear-gradient(180deg,#03050b08 20%,#03050be8 100%),linear-gradient(90deg,#03050b88 0,transparent 40%,transparent 76%,#03050b44 100%)!important}
+.hero-photo img{filter:saturate(.72) contrast(1.08)!important}
+.project.big{background:linear-gradient(145deg,#090b12,#07080d)!important}
+.project-art{right:5%!important;top:9%!important;width:48%!important;aspect-ratio:16/10!important;border-radius:22px!important;transform:none!important;background:#05070d!important;border:1px solid #ffffff16!important;box-shadow:0 25px 70px #0008}
+.project-art:after{display:none!important}
+.project-art img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;opacity:.94!important;filter:saturate(.9) contrast(1.06)!important;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s}
+.project:hover .project-art img{transform:scale(1.035);filter:saturate(1) contrast(1.08)!important}
+.project:hover .project-art{transform:none!important}
+.creator-card .profile-shot{opacity:.2!important;filter:saturate(.5) contrast(1.12)!important}
+@media(max-width:800px){.three-layer{opacity:.4}.hero-photo{right:-15vw!important;top:18vh!important;width:70vw!important;height:56vh!important;opacity:.22}.project-art{position:relative!important;right:auto!important;top:auto!important;width:100%!important;height:230px!important;margin:20px 0 0!important;aspect-ratio:auto!important}}
+</style>
+<style>
+:root{color-scheme:dark;--bg:#030305;--surface:#0a0a0f;--surface2:#101017;--text:#f7f7f2;--muted:#858594;--line:#23232d;--accent:#d7ff3f;--accent2:#8d7cff;--ink:#050505}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#030305;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.app{min-height:100vh;background:var(--bg);border-radius:0}.noise{position:fixed;inset:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");z-index:40}.webgl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.8}.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 4vw;background:linear-gradient(#030305cc,transparent);backdrop-filter:blur(10px)}.logo{font-weight:900;letter-spacing:-.05em;font-size:1.1rem}.navlinks{display:flex;gap:26px;font-size:.8rem;font-weight:700}.navlinks a{opacity:.72;transition:opacity .25s,transform .25s}.navlinks a:hover{opacity:1;transform:translateY(-2px)}.menu{display:none;border:1px solid var(--line);background:#0b0b0f;color:var(--text);border-radius:999px;padding:8px 12px}.hero{min-height:100vh;position:relative;display:grid;place-items:center;padding:120px 5vw 70px;overflow:hidden}.orb{position:absolute;width:48vw;height:48vw;max-width:680px;max-height:680px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#eaff82 0 7%,#7b6cff 25%,transparent 68%);filter:blur(45px);opacity:.2;animation:float 10s ease-in-out infinite}.orb.one{left:-15vw;top:10vh}.orb.two{right:-20vw;bottom:-25vh;animation-delay:-4s;opacity:.16}.hero-grid{position:absolute;inset:0;background:linear-gradient(#23232d44 1px,transparent 1px),linear-gradient(90deg,#23232d44 1px,transparent 1px);background-size:8vw 8vw;mask-image:linear-gradient(to bottom,black,transparent 75%);opacity:.32}.hero-inner{position:relative;z-index:3;width:min(1200px,100%);text-align:left}.eyebrow{display:inline-flex;gap:9px;align-items:center;border:1px solid var(--line);background:#0a0a0fcc;backdrop-filter:blur(16px);padding:8px 12px;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}h1{font-size:clamp(4rem,11.5vw,10.8rem);line-height:.78;letter-spacing:-.09em;margin:28px 0 30px;max-width:1100px}h1 .word,.cta h2 .word{display:inline-block;overflow:hidden;vertical-align:bottom}h1 .char,.cta h2 .char{display:inline-block;transform:translateY(115%);opacity:0}.text-ready h1 .char,.text-ready .cta h2 .char{animation:charIn 1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i)*.025s)}.hero-copy{display:flex;justify-content:space-between;gap:30px;align-items:end}.lede{font-size:clamp(1rem,1.8vw,1.35rem);line-height:1.45;max-width:560px;color:#aaaaba}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:13px 18px;font-size:.85rem;font-weight:900;border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s,color .35s,box-shadow .35s}.btn.primary{background:var(--accent);color:var(--ink);border-color:var(--accent);box-shadow:0 0 35px #d7ff3f22}.btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 40px #0008}.scrollcue{position:absolute;bottom:28px;left:5vw;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}.line{width:60px;height:1px;background:currentColor}.section{padding:140px 5vw;position:relative;z-index:2}.wrap{width:min(1200px,100%);margin:auto}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:50px}.kicker{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:900}.section-title{font-size:clamp(2.7rem,6vw,6rem);line-height:.9;letter-spacing:-.07em;margin:12px 0 0}.section-note{max-width:380px;color:var(--muted);line-height:1.55}.projects{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.project{position:relative;min-height:420px;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:#08080dE8;padding:28px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .5s;backdrop-filter:blur(14px)}.project:hover{transform:translateY(-8px) rotateX(1deg);border-color:#d7ff3f66;box-shadow:0 30px 80px #0008}.project.big{min-height:620px;background:radial-gradient(circle at 80% 20%,#d7ff3f1c,transparent 32%),#08080de8}.project.small{min-height:301px}.project small{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900}.project h3{font-size:clamp(2rem,4vw,4rem);letter-spacing:-.06em;line-height:.9;margin:18px 0 10px}.project p{color:var(--muted);max-width:500px;line-height:1.5}.project-art{position:absolute;right:7%;top:15%;width:42%;aspect-ratio:1;border:1px solid #ffffff22;border-radius:28%;transform:rotate(12deg);background:linear-gradient(135deg,#d7ff3fbb,#8d7cff88);filter:saturate(.9);transition:transform .6s cubic-bezier(.2,.8,.2,1)}.project:hover .project-art{transform:rotate(0deg) scale(1.08)}.project-art:after{content:"QR";position:absolute;inset:18%;display:grid;place-items:center;border:1px dashed #050505aa;font-weight:1000;font-size:clamp(2rem,5vw,5rem);color:#050505}.mini-art{width:100%;height:150px;border-radius:20px;border:1px solid var(--line);background:repeating-linear-gradient(90deg,transparent 0 16px,#23232d 17px 18px),repeating-linear-gradient(0deg,transparent 0 16px,#23232d 17px 18px);opacity:.7;margin-top:20px}.creator{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.creator-card,.skill-card{border:1px solid var(--line);border-radius:28px;padding:30px;background:#08080de8;backdrop-filter:blur(14px)}.creator-card{min-height:480px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#0d0d13,#08080d)}.creator-mark{font-size:clamp(5rem,13vw,11rem);line-height:.75;letter-spacing:-.1em;font-weight:1000;background:linear-gradient(135deg,#fff,#777 60%,#d7ff3f);-webkit-background-clip:text;background-clip:text;color:transparent}.creator-card p{color:var(--muted);line-height:1.5}.creator-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.skill-card h3{font-size:1.4rem;margin:0 0 22px}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:.75rem;font-weight:800;background:#111118}.socials{display:flex;gap:10px;flex-wrap:wrap}.social{border:1px solid var(--line);border-radius:16px;padding:13px 14px;flex:1;min-width:120px;font-weight:900;font-size:.85rem;transition:transform .25s,background .25s}.social:hover{transform:translateY(-4px);background:#15151d}.marquee{position:relative;z-index:2;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;white-space:nowrap;background:#050508bb;backdrop-filter:blur(10px)}.marquee-track{display:inline-flex;gap:35px;animation:marquee 18s linear infinite;font-size:clamp(1.2rem,2.5vw,2rem);font-weight:1000;letter-spacing:-.04em}.marquee span:nth-child(odd){color:var(--accent)}.cta{min-height:75vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}.cta h2{font-size:clamp(4rem,11vw,10rem);line-height:.78;letter-spacing:-.09em;margin:0;position:relative;z-index:2}.cta p{max-width:560px;color:var(--muted);margin:30px auto;font-size:1rem;line-height:1.5;position:relative;z-index:2}.footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:28px 5vw;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.75rem;background:#030305}.reveal{opacity:0;transform:translateY(55px) scale(.985)}.visible{opacity:1;transform:none;transition:opacity .9s ease,transform 1s cubic-bezier(.16,1,.3,1)}@keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(20px,-25px,0) scale(1.04)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes charIn{to{transform:translateY(0);opacity:1}}@media(max-width:800px){.navlinks{display:none}.menu{display:block}.hero{padding-top:120px}.hero-copy{display:block}.actions{margin-top:25px}.projects,.creator{grid-template-columns:1fr}.project.big{min-height:520px}.creator-grid{grid-template-columns:1fr}.section{padding:90px 5vw}.section-head{display:block}.section-note{margin-top:20px}.footer{display:block}.footer div+div{margin-top:8px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.webgl{display:none}}
+</style>
+</head>
+<body>
+<div class="app" id="top">
+<div class="noise"></div>
+<style>.hero-photo{position:absolute;right:1vw;top:9vh;width:min(38vw,520px);height:min(72vh,720px);border-radius:34px;overflow:hidden;border:1px solid #ffffff22;box-shadow:0 45px 100px #000b,0 0 0 1px #d7ff3f12;transform:perspective(1200px) rotateY(-10deg) rotateX(2deg);transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .7s;z-index:-1}.hero-photo:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#020205 100%),linear-gradient(90deg,#020205aa 0,transparent 35%,transparent 70%,#02020555 100%);z-index:2}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.82) contrast(1.05)}.hero:hover .hero-photo{transform:perspective(1200px) rotateY(-4deg) translate3d(-10px,-8px,0);filter:saturate(1.05)}.project-art{overflow:hidden!important}.project-art img{width:100%;height:100%;object-fit:cover;opacity:.78;filter:saturate(.72) contrast(1.08)}.creator-card{overflow:hidden;position:relative}.creator-card .profile-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.32;filter:saturate(.65);z-index:0}.creator-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#08080d22 20%,#08080df5 82%);z-index:1}.creator-card>*:not(.profile-shot){position:relative;z-index:2}.webgl{opacity:.95!important;mix-blend-mode:screen}@media(max-width:800px){.hero-photo{right:-18vw;top:14vh;width:72vw;height:62vh;opacity:.35;transform:none}.project-art{position:relative!important;right:auto!important;top:auto!important;width:100%!important;height:230px!important;transform:none!important;margin:20px 0 0}}</style>
+<nav class="nav"><a class="logo" href="#top">SM/09</a><div class="navlinks"><a href="#work">Work</a><a href="#creator">Creator</a><a href="#stack">Stack</a><a href="#contact">Contact</a></div><button class="menu" aria-label="Open navigation" onclick="document.querySelector('.navlinks').classList.toggle('open')">Menu</button></nav>
+<section class="hero"><div class="orb one"></div><div class="orb two"></div><div class="hero-grid"></div><div class="hero-photo" data-depth="0.35"><img src="workspace.png" alt="Sameer Mohammad portrait"></div><div class="hero-inner"><div class="eyebrow reveal"><span class="dot"></span> Developer × Creator · Hyderabad</div><h1 class="reveal">BUILD.<br>CREATE.<br><span style="color:var(--accent)">REDEFINE.</span></h1><div class="hero-copy reveal"><p class="lede">I'm Sameer Mohammad — a student, web developer and future content creator building useful things on the web and documenting the journey.</p><div class="actions"><a class="btn primary" href="#work">Explore my work ↗</a><a class="btn" href="https://www.instagram.com/sameermohammad0509" target="_blank" rel="noreferrer">Instagram</a></div></div></div><div class="scrollcue"><span class="line"></span> Scroll to explore</div></section>
+<div class="marquee"><div class="marquee-track"><span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>PHP</span><span>MYSQL</span><span>CONTENT</span><span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>PHP</span><span>MYSQL</span><span>CONTENT</span></div></div>
+<section class="section" id="work"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">01 / Selected build</div><h2 class="section-title">Things I<br>actually ship.</h2></div><p class="section-note">Learning by building. My projects are where code becomes something people can open, use and share.</p></div><div class="projects"><a class="project big reveal" href="https://sameer-evo.github.io/QR-CodeGenerator/" target="_blank" rel="noreferrer"><div><small>Live project · Web utility</small><h3>QR Code<br>Generator</h3><p>Generate unlimited QR codes for free. A practical project built around a simple idea: make useful tools and keep improving them.</p></div><div><span class="btn primary">Open project ↗</span></div><div class="project-art"><img src="1.png" alt="QR Forge project preview"></div></a><div style="display:grid;gap:18px"><article class="project small reveal"><div><small>Next chapter</small><h3>More builds<br>loading…</h3><p>PHP, MySQL and full-stack experiments are next.</p></div><div class="mini-art"></div></article><article class="project small reveal"><div><small>Creator mode</small><h3>Ideas →<br>content.</h3><p>Turning the process of learning, building and creating into stories worth following.</p></div><div class="tags"><span class="tag">Build in public</span><span class="tag">Short-form</span><span class="tag">Tech</span></div></article></div></div></div></section>
+<section class="section" id="creator"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">02 / The creator side</div><h2 class="section-title">Code is the craft.<br>Story is the reach.</h2></div><p class="section-note">The long-term goal is to combine development and content creation—building things, explaining what I learn, and sharing the process.</p></div><div class="creator"><div class="creator-card reveal"><img class="profile-shot" src="workspace.png" alt="Sameer Mohammad portrait"><div class="creator-mark">SM</div><div><div class="kicker">Sameer Mohammad</div><p>9th grade · Hyderabad<br>Developer in progress · Creator in progress</p></div></div><div class="creator-grid"><div class="skill-card reveal" id="stack"><h3>Current stack</h3><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP · learning</span><span class="tag">MySQL · learning</span><span class="tag">GitHub</span><span class="tag">WebGL</span><span class="tag">3D UI</span></div></div><div class="skill-card reveal"><h3>Creator channels</h3><div class="socials"><a class="social" href="https://www.instagram.com/sameermohammad0509" target="_blank" rel="noreferrer">Instagram ↗</a><a class="social" href="https://www.threads.com/@sameermohammad0509" target="_blank" rel="noreferrer">Threads ↗</a></div></div><div class="skill-card reveal" style="grid-column:1/-1"><h3>What I'm building toward</h3><p style="color:var(--muted);line-height:1.6;margin:0">A future where I can take an idea from a blank page to a polished product—and then tell the story of how it was made. Full-stack development + content creation, one project at a time.</p></div></div></div></div></section>
+<section class="section cta" id="contact"><div class="wrap"><div class="kicker reveal">03 / Start here</div><h2 class="reveal">LET'S<br><span style="color:var(--accent)"> BUILD.</span></h2><p class="reveal">Follow the journey, check out the projects, or connect with me online.</p><div class="actions" style="justify-content:center"><a class="btn primary" href="https://www.instagram.com/sameermohammad0509" target="_blank" rel="noreferrer">Instagram ↗</a><a class="btn" href="https://www.threads.com/@sameermohammad0509" target="_blank" rel="noreferrer">Threads ↗</a><a class="btn" href="https://sameer-evo.github.io/QR-CodeGenerator/" target="_blank" rel="noreferrer">QR Generator ↗</a></div></div></section>
+<footer class="footer"><div>© 2026 Sameer Mohammad</div><div>Developer + Creator · Hyderabad, India</div></footer>
+</div>
+<script>
+const app=document.querySelector('.app');const canvas=document.createElement('canvas');canvas.className='webgl';app.prepend(canvas);const gl=canvas.getContext('webgl',{alpha:true,antialias:true});
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;gl.viewport(0,0,canvas.width,canvas.height)}resize();addEventListener('resize',resize);
+const vs='attribute vec3 p;attribute float s;uniform float t;varying float a;void main(){float z=mod(p.z+t*.018,4.0)-2.0;vec2 q=p.xy/(z+3.0);gl_Position=vec4(q,0.0,1.0);gl_PointSize=s*(2.0+1.0/(z+3.0));a=1.0-abs(z)/2.0;}';
+const fs='precision mediump float;varying float a;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;gl_FragColor=vec4(.84,1.0,.25,a*.7*(1.0-d*2.0));}';
+function shader(type,src){const x=gl.createShader(type);gl.shaderSource(x,src);gl.compileShader(x);return x}const pr=gl.createProgram();gl.attachShader(pr,shader(gl.VERTEX_SHADER,vs));gl.attachShader(pr,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+const count=420,pts=new Float32Array(count*4);for(let i=0;i<count;i++){pts[i*4]=(Math.random()-.5)*4.2;pts[i*4+1]=(Math.random()-.5)*2.2;pts[i*4+2]=Math.random()*4-2;pts[i*4+3]=1+Math.random()*3}
+const depthCanvas=document.createElement('canvas');depthCanvas.className='webgl';app.prepend(depthCanvas);const dgl=depthCanvas.getContext('webgl',{alpha:true,antialias:true});function dresize(){const d=Math.min(devicePixelRatio,2);depthCanvas.width=innerWidth*d;depthCanvas.height=innerHeight*d;dgl.viewport(0,0,depthCanvas.width,depthCanvas.height)}dresize();addEventListener('resize',dresize);const dvs='attribute vec3 p;attribute float s;attribute float r;uniform float t;uniform vec2 m;varying float a;void main(){float z=mod(p.z+t*.22,6.0)-3.0;vec3 q=p;q.x+=m.x*(.4+z*.05)+sin(t*.7+p.z*2.0)*.06;q.y+=m.y*(.25+z*.04);float k=1.0/(z+4.2);gl_Position=vec4(q.xy*k,0.0,1.0);gl_PointSize=s*(2.0+k*3.0)*(1.0+r*.25);a=max(0.0,1.0-abs(z)/3.0);}';const dfs='precision mediump float;varying float a;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;float c=smoothstep(.5,.02,d);gl_FragColor=vec4(mix(vec3(.55,.48,1.0),vec3(.84,1.0,.25),a),c*a*.55);}';function dshader(type,src){const x=dgl.createShader(type);dgl.shaderSource(x,src);dgl.compileShader(x);return x}const dp=dgl.createProgram();dgl.attachShader(dp,dshader(dgl.VERTEX_SHADER,dvs));dgl.attachShader(dp,dshader(dgl.FRAGMENT_SHADER,dfs));dgl.linkProgram(dp);dgl.useProgram(dp);const dc=760,dpv=new Float32Array(dc*5);for(let i=0;i<dc;i++){const j=i*5,rad=.3+Math.random()*2.8,a=Math.random()*Math.PI*2;dpv[j]=Math.cos(a)*rad+(Math.random()-.5)*.5;dpv[j+1]=Math.sin(a)*rad*.58+(Math.random()-.5)*.35;dpv[j+2]=Math.random()*6-3;dpv[j+3]=1+Math.random()*3;dpv[j+4]=Math.random()}const db=dgl.createBuffer();dgl.bindBuffer(dgl.ARRAY_BUFFER,db);dgl.bufferData(dgl.ARRAY_BUFFER,dpv,dgl.STATIC_DRAW);const dpl=dgl.getAttribLocation(dp,'p'),dsl=dgl.getAttribLocation(dp,'s'),drl=dgl.getAttribLocation(dp,'r');dgl.enableVertexAttribArray(dpl);dgl.vertexAttribPointer(dpl,3,dgl.FLOAT,false,20,0);dgl.enableVertexAttribArray(dsl);dgl.vertexAttribPointer(dsl,1,dgl.FLOAT,false,20,12);dgl.enableVertexAttribArray(drl);dgl.vertexAttribPointer(drl,1,dgl.FLOAT,false,20,16);const dt=dgl.getUniformLocation(dp,'t'),dm=dgl.getUniformLocation(dp,'m');let dmx=0,dmy=0,ddx=0,ddy=0;addEventListener('pointermove',e=>{ddx=(e.clientX/innerWidth-.5)*1.4;ddy=(e.clientY/innerHeight-.5)*-.9},{passive:true});function depthFrame(t){dmx+=(ddx-dmx)*.03;dmy+=(ddy-dmy)*.03;dgl.clearColor(0,0,0,0);dgl.clear(dgl.COLOR_BUFFER_BIT);dgl.uniform1f(dt,t*.001);dgl.uniform2f(dm,dmx,dmy);dgl.drawArrays(dgl.POINTS,0,dc);requestAnimationFrame(depthFrame)}requestAnimationFrame(depthFrame);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,pts,gl.STATIC_DRAW);const pLoc=gl.getAttribLocation(pr,'p'),sLoc=gl.getAttribLocation(pr,'s');gl.enableVertexAttribArray(pLoc);gl.vertexAttribPointer(pLoc,3,gl.FLOAT,false,16,0);gl.enableVertexAttribArray(sLoc);gl.vertexAttribPointer(sLoc,1,gl.FLOAT,false,16,12);const tLoc=gl.getUniformLocation(pr,'t');
+let mx=0,my=0;addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*.12;my=(e.clientY/innerHeight-.5)*.08});function frame(t){gl.clearColor(.011,.011,.018,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(tLoc,t);gl.drawArrays(gl.POINTS,0,count);canvas.style.transform=`translate3d(${mx*30}px,${my*30}px,0)`;requestAnimationFrame(frame)}requestAnimationFrame(frame);
+function splitText(el){const text=el.textContent;el.textContent='';[...text].forEach((c,i)=>{const s=document.createElement('span');s.className='char';s.textContent=c===' '?'\u00a0':c;s.style.setProperty('--i',i);el.appendChild(s)})}document.querySelectorAll('h1,.cta h2').forEach(splitText);requestAnimationFrame(()=>document.body.classList.add('text-ready'));
+const reveals=[...document.querySelectorAll('.reveal')];const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});reveals.forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%5,4)*70)+'ms';io.observe(el)});
+const hero=document.querySelector('.hero-inner');const title=document.querySelector('h1');addEventListener('scroll',()=>{const y=scrollY;if(hero)hero.style.transform=`translate3d(0,${Math.min(y*.10,70)}px,0)`;if(title)title.style.letterSpacing=`calc(-.09em + ${Math.min(y/900,.025)}em)`},{passive:true});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"></script>
+<script>
+(() => {
+  const layer = document.createElement('div');
+  layer.className = 'three-layer';
+  document.querySelector('.app').prepend(layer);
+  if (!window.THREE) {
+    /* Offline/local-file fallback: keep the same restrained visual direction
+       when a browser blocks the external Three.js CDN. */
+    const c=document.createElement('canvas');
+    c.className='three-layer';
+    c.style.display='block';
+    c.style.width='100%';
+    c.style.height='100%';
+    layer.appendChild(c);
+    const x=c.getContext('2d');
+    const d=Math.min(devicePixelRatio||1,1.5);
+    const dots=Array.from({length:360},()=>({x:(Math.random()-.5)*2,y:(Math.random()-.5)*1.1,z:Math.random(),s:.5+Math.random()*1.5}));
+    let ox=0,oy=0,tx=0,ty=0;
+    addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5)*.08;ty=(e.clientY/innerHeight-.5)*.05},{passive:true});
+    function rs(){c.width=innerWidth*d;c.height=innerHeight*d} rs(); addEventListener('resize',rs);
+    function f(t){
+      ox+=(tx-ox)*.025;oy+=(ty-oy)*.025;
+      x.clearRect(0,0,c.width,c.height);x.save();x.scale(d,d);
+      for(const p of dots){
+        const px=innerWidth*(.5+p.x*.55+ox*(.2+p.z*.5));
+        const py=innerHeight*(.5+p.y*.62+oy*(.2+p.z*.5));
+        const r=p.s*(.5+p.z*1.3);
+        x.globalAlpha=.08+p.z*.18;
+        x.fillStyle=p.z>.72?'#d7ff3f':'#9aa4ff';
+        x.beginPath();x.arc(px,py,r,0,Math.PI*2);x.fill();
+      }
+      x.globalAlpha=.045;x.strokeStyle='#9aa4ff';x.lineWidth=1;
+      x.beginPath();x.arc(innerWidth*.76,innerHeight*.35,Math.min(innerWidth,innerHeight)*.19+t*.002,0,Math.PI*2);x.stroke();
+      x.restore();requestAnimationFrame(f);
+    } requestAnimationFrame(f);
+    return;
+  }
+  const oldWorks = document.querySelectorAll('section#work');
+  if (oldWorks.length > 1) oldWorks[0].remove();
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.1, 40);
+  camera.position.set(0, 0, 8.5);
+
+  const renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true, powerPreference:'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  layer.appendChild(renderer.domElement);
+
+  const root = new THREE.Group();
+  scene.add(root);
+
+  const makeField = (count, radius, opacity, size) => {
+    const geo = new THREE.BufferGeometry();
+    const pos = new Float32Array(count * 3);
+    for(let i=0;i<count;i++){
+      const i3=i*3, r=radius*Math.pow(Math.random(),.62), a=Math.random()*Math.PI*2;
+      pos[i3]=Math.cos(a)*r;
+      pos[i3+1]=Math.sin(a)*r*.52 + (Math.random()-.5)*1.5;
+      pos[i3+2]=(Math.random()-.5)*6;
+    }
+    geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    const mat = new THREE.PointsMaterial({color:0x9aa4ff,size,sizeAttenuation:true,transparent:true,opacity,depthWrite:false,blending:THREE.AdditiveBlending});
+    return new THREE.Points(geo,mat);
+  };
+  root.add(makeField(850,5.4,.18,.018));
+  root.add(makeField(420,3.8,.11,.025));
+
+  const ring = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(2.35,2),
+    new THREE.MeshBasicMaterial({color:0x8791ff,wireframe:true,transparent:true,opacity:.035,depthWrite:false})
+  );
+  ring.position.set(2.4,.2,-1.5);
+  root.add(ring);
+
+  const halo = new THREE.Mesh(
+    new THREE.TorusGeometry(2.65,.012,12,160),
+    new THREE.MeshBasicMaterial({color:0xd7ff3f,transparent:true,opacity:.075,depthWrite:false,blending:THREE.AdditiveBlending})
+  );
+  halo.rotation.x=Math.PI*.47;
+  halo.position.set(2.8,-.25,-1);
+  root.add(halo);
+
+  let tx=0,ty=0,mx=0,my=0;
+  addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5)*.18;ty=(e.clientY/innerHeight-.5)*.11},{passive:true});
+  addEventListener('resize',()=>{
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
+    renderer.setSize(innerWidth,innerHeight);
+  });
+
+  const clock = new THREE.Clock();
+  const render = () => {
+    const t=clock.getElapsedTime();
+    mx+=(tx-mx)*.035; my+=(ty-my)*.035;
+    root.rotation.y=mx*.55+Math.sin(t*.09)*.018;
+    root.rotation.x=my*.35+Math.sin(t*.13)*.012;
+    ring.rotation.x=t*.035; ring.rotation.y=t*.055;
+    halo.rotation.z=t*.025;
+    camera.position.x += ((mx*.45)-camera.position.x)*.018;
+    camera.position.y += ((-my*.3)-camera.position.y)*.018;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+    requestAnimationFrame(render);
+  };
+  render();
+})();
+</script>
+
+<style id="motion-upgrade">
+:root{--mx:50vw;--my:50vh}.motion-progress{position:fixed;left:0;top:0;width:100%;height:2px;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),#8d7cff,var(--accent));box-shadow:0 0 20px #d7ff3f88;z-index:120}.motion-cursor{position:fixed;left:0;top:0;width:18px;height:18px;border:1px solid #d7ff3f99;border-radius:50%;pointer-events:none;z-index:119;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:width .25s,height .25s}.motion-cursor.is-big{width:54px;height:54px}.motion-vignette{position:fixed;inset:0;pointer-events:none;z-index:38;background:radial-gradient(500px circle at var(--mx) var(--my),transparent 0,transparent 40%,#00000018 100%)}.magnetic{transition:transform .35s cubic-bezier(.2,.8,.2,1)}.tilt3d{transform-style:preserve-3d;will-change:transform}.tilt3d:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(300px circle at var(--cardx,50%) var(--cardy,50%),#d7ff3f18,transparent 55%);opacity:0;transition:opacity .35s}.tilt3d:hover:after{opacity:1}.project,.skill-card,.creator-card{backface-visibility:hidden}.project-art img{transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .6s}.project:hover .project-art img{transform:scale(1.12) translate3d(0,-2%,0);filter:saturate(1.08) contrast(1.1)}.scroll-float{will-change:transform}.motion-char{display:inline-block;opacity:0;transform:translateY(120%) rotate(7deg);transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .6s}.motion-char.on{opacity:1;transform:none}.section-line{position:absolute;left:5vw;right:5vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:scaleX(.15);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}.section-line.on{transform:scaleX(1)}@media(prefers-reduced-motion:reduce){.motion-progress,.motion-cursor,.motion-vignette{display:none}.motion-char{opacity:1;transform:none}.tilt3d{transform:none!important}}
+</style>
+<script id="motion-upgrade-script">
+(()=>{const d=document,root=d.documentElement,bar=d.createElement('div'),cursor=d.createElement('div'),vignette=d.createElement('div');bar.className='motion-progress';cursor.className='motion-cursor';vignette.className='motion-vignette';d.body.append(bar,cursor,vignette);let px=innerWidth/2,py=innerHeight/2,tx=px,ty=py;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;root.style.setProperty('--mx',tx+'px');root.style.setProperty('--my',ty+'px')},{passive:true});function cursorLoop(){px+=(tx-px)*.2;py+=(ty-py)*.2;cursor.style.transform=`translate3d(${px}px,${py}px,0) translate(-50%,-50%)`;requestAnimationFrame(cursorLoop)}cursorLoop();d.querySelectorAll('a,button,.tag,.social,.project').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('is-big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('is-big'))});d.querySelectorAll('.btn.primary,.nav a,.social').forEach(el=>{el.classList.add('magnetic');el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.12,y=(e.clientY-r.top-r.height/2)*.12;el.style.transform=`translate3d(${x}px,${y}px,0)`});el.addEventListener('pointerleave',()=>el.style.transform='')});d.querySelectorAll('.project,.skill-card,.creator-card').forEach(el=>{el.classList.add('tilt3d');el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.setProperty('--cardx',x*100+'%');el.style.setProperty('--cardy',y*100+'%');el.style.transform=`perspective(1100px) rotateX(${(y-.5)*-5}deg) rotateY(${(x-.5)*5}deg) translateY(-6px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});d.querySelectorAll('.section').forEach(el=>{const line=d.createElement('i');line.className='section-line';el.appendChild(line)});const titles=[...d.querySelectorAll('.section-title,.cta h2')];titles.forEach(el=>{const text=el.textContent;el.textContent='';[...text].forEach((c,i)=>{const s=d.createElement('span');s.className='motion-char';s.textContent=c===' '?'\u00a0':c;s.style.transitionDelay=Math.min(i*.018,.45)+'s';el.appendChild(s)})});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll?.('.motion-char').forEach(x=>x.classList.add('on'));e.target.querySelector?.('.section-line')?.classList.add('on');io.unobserve(e.target)}}),{threshold:.14});d.querySelectorAll('.section,.cta').forEach(x=>io.observe(x));addEventListener('scroll',()=>{const max=d.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${max?scrollY/max:0})`;const y=scrollY;d.querySelectorAll('.hero-grid,.hero-photo,.orb.one,.orb.two').forEach((el,i)=>{const f=[-.035,-.055,-.025,-.02][i]||-.02;el.style.translate=`0 ${y*f}px`})},{passive:true});if(matchMedia('(prefers-reduced-motion: reduce)').matches){bar.remove();cursor.remove();vignette.remove()}})();
+</script>
+</body>
+</html>
